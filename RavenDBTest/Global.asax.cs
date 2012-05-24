@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Raven.Client.Document;
 using RavenDBTest.Mvc;
 using StructureMap;
 
