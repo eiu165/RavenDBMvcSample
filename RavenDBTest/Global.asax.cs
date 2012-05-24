@@ -22,6 +22,7 @@ namespace RavenDBTest
 
 		protected void Application_Start()
 		{
+			GlobalFilters.Filters.Add(new RavenSessionAttribute());
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterRoutes(RouteTable.Routes);
