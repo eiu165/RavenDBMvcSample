@@ -2,12 +2,12 @@
 using System.Web.Routing;
 using Raven.Client.Document;
 using RavenDBTest.Mvc;
+using StructureMap;
 
 namespace RavenDBTest
 {
 	public class MvcApplication : System.Web.HttpApplication
 	{
-
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -22,6 +22,8 @@ namespace RavenDBTest
 		protected void Application_Start()
 		{
 			GlobalFilters.Filters.Add(new RavenSessionAttribute());
+
+			ObjectFactory.Initialize(ie => ie.AddRegistry<StructureMapConfigurationRegistry>());
 
 			ControllerBuilder.Current.SetControllerFactory(typeof(StructureMapControllerFactory));
 
