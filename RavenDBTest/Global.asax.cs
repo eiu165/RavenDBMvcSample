@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using Raven.Abstractions.Data;
 using Raven.Client.Document;
+using RavenDBTest.Mvc;
 
 namespace RavenDBTest
 {
@@ -23,20 +23,12 @@ namespace RavenDBTest
 		protected void Application_Start()
 		{
 			GlobalFilters.Filters.Add(new RavenSessionAttribute());
+
+			ControllerBuilder.Current.SetControllerFactory(typeof(StructureMapControllerFactory));
+
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterRoutes(RouteTable.Routes);
-
-			var parser = ConnectionStringParser<RavenConnectionStringOptions>.FromConnectionStringName("RavenDB");
-			parser.Parse();
-
-			Store = new DocumentStore
-			{
-				ApiKey = parser.ConnectionStringOptions.ApiKey,
-				Url = parser.ConnectionStringOptions.Url,
-			};
-
-			Store.Initialize();
 		}
 	}
 }
