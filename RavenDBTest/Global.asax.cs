@@ -7,7 +7,6 @@ namespace RavenDBTest
 {
 	public class MvcApplication : System.Web.HttpApplication
 	{
-		public static DocumentStore Store { get; set; }
 
 		public static void RegisterRoutes(RouteCollection routes)
 		{
