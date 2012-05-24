@@ -117,6 +117,8 @@
     </Compile>
     <Compile Include="Model\Thingy.cs" />
     <Compile Include="Mvc\RavenSessionAttribute.cs" />
+    <Compile Include="Mvc\StructureMapConfigurationRegistry.cs" />
+    <Compile Include="Mvc\StructureMapControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
