@@ -43,7 +43,7 @@ namespace RavenDBTest.Mvc
 		private IDocumentStore GetEmbeddableDocumentStore()
 		{
 			var store = new EmbeddableDocumentStore();
-			store.DataDirectory = "App_Date";
+			store.DataDirectory = "App_Data";
 			return store;
 		}
 
