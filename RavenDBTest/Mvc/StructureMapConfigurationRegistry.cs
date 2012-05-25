@@ -12,11 +12,9 @@ namespace RavenDBTest.Mvc
 	{
 		public StructureMapConfigurationRegistry()
 		{
-			var environmentName = ConfigurationManager.AppSettings.Get("Environment");
-
 			ForSingletonOf<IDocumentStore>().Use(() =>
 				{
-					var store = GetDocumentStore(environmentName);
+					var store = GetDocumentStore();
 					store.Initialize();
 					return store;
 				});
@@ -27,8 +25,10 @@ namespace RavenDBTest.Mvc
 			});
 		}
 
-		private IDocumentStore GetDocumentStore(string environmentName)
+		private IDocumentStore GetDocumentStore()
 		{
+			var environmentName = ConfigurationManager.AppSettings.Get("Environment");
+
 			switch (environmentName)
 			{
 				case "Debug":
