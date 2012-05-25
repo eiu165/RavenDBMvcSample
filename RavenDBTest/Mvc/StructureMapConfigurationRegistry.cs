@@ -14,7 +14,12 @@ namespace RavenDBTest.Mvc
 		{
 			var environmentName = ConfigurationManager.AppSettings.Get("Environment");
 
-			ForSingletonOf<IDocumentStore>().Use(() => GetDocumentStore(environmentName));
+			ForSingletonOf<IDocumentStore>().Use(() =>
+				{
+					var store = GetDocumentStore(environmentName);
+					store.Initialize();
+					return store;
+				});
 
 			For<IDocumentSession>().HybridHttpOrThreadLocalScoped().Use(context =>
 			{
@@ -24,22 +29,15 @@ namespace RavenDBTest.Mvc
 
 		private IDocumentStore GetDocumentStore(string environmentName)
 		{
-			IDocumentStore store;
-
 			switch (environmentName)
 			{
 				case "Debug":
-					store = GetEmbeddableDocumentStore();
-					break;
+					return GetEmbeddableDocumentStore();
 				case "Release":
-					store = GetConnectionstringDocumentStore();
-					break;
+					return GetConnectionstringDocumentStore();
 				default:
 					throw new ArgumentException("environmentName");
 			}
-
-			store.Initialize();
-			return store;
 		}
 
 		private IDocumentStore GetEmbeddableDocumentStore()
