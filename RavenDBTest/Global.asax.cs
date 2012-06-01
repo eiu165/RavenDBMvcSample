@@ -1,12 +1,14 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
-using RavenDBTest.Mvc;
-using StructureMap;
+using Raven.Client.Document;
+using Raven.Client.Embedded;
 
 namespace RavenDBTest
 {
 	public class MvcApplication : System.Web.HttpApplication
 	{
+		public static DocumentStore Store { get; set; }
+
 		public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -20,15 +22,14 @@ namespace RavenDBTest
 
 		protected void Application_Start()
 		{
-			GlobalFilters.Filters.Add(new RavenSessionAttribute());
-
-			ObjectFactory.Initialize(ie => ie.AddRegistry<StructureMapConfigurationRegistry>());
-
-			ControllerBuilder.Current.SetControllerFactory(typeof(StructureMapControllerFactory));
-
 			AreaRegistration.RegisterAllAreas();
-
 			RegisterRoutes(RouteTable.Routes);
+
+			Store = new EmbeddableDocumentStore
+			{
+				ConnectionStringName = "RavenDB",
+			};
+			Store.Initialize();
 		}
 	}
 }
