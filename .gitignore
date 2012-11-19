@@ -8,3 +8,4 @@ deploy/*
 TestResults/
 packages/
 RavenDBTest/App_Data/
+_ReSharper*
