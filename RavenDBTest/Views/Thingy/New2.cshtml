@@ -1,0 +1,17 @@
+﻿
+@{
+	ViewBag.Title = "New";
+}
+
+<h2>New</h2>
+<div>
+	@using (Html.BeginForm("Create2", "Thingy")){
+		<p>
+			name:                           
+            <input id="Name" name="Name" type="text" value="">    
+        </p>
+		<p>
+			<input type="submit" value="Submit" />
+		</p>
+	}
+</div>

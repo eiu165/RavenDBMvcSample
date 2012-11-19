@@ -5,10 +5,25 @@ namespace RavenDBTest.Controllers
 {
 	public class ThingyController : BaseController
 	{
-		public ActionResult Index()
-		{
-			return View(RavenSession.Query<Thingy>());
-		}
+        public ActionResult Index()
+        {
+            return View(RavenSession.Query<Thingy>());
+        }
+        public ActionResult Index2()
+        {
+            return View(RavenSession.Query<dynamic>());
+        }
+        public ActionResult New2()
+        {
+            return View();
+        }
+        public ActionResult Create2(FormCollection fc)
+        {
+
+            RavenSession.Store(new {Name = fc["name"]});
+
+            return RedirectToAction("Index");
+        }
 
 		public ActionResult New()
 		{
