@@ -1,0 +1,18 @@
+﻿
+@model IEnumerable<RavenDBTest.Model.RoomType>
+           
+          
+
+<h2>Room Type</h2>
+<table>
+	@foreach (var room in Model)
+	{
+		<tr>
+            <td>@room.Name</td> <td>@room.Date</td> <td>@room.NumberAvaliable</td> 
+        </tr>
+	}
+</table>
+
+<p>
+	@Html.ActionLink("Create new Room", "New")
+</p>

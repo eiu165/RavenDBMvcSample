@@ -1,0 +1,24 @@
+﻿@model RavenDBTest.Model.RoomType
+
+@{
+	ViewBag.Title = "New";
+}
+
+<h2>New</h2>
+<div>
+	@using (Html.BeginForm("Create", "RoomTypes")){
+		<p>
+			@Html.LabelFor(x => x.Name)
+			@Html.TextBoxFor(x => x.Name)
+		</p>	<p>
+			@Html.LabelFor(x => x.Date)
+			@Html.TextBoxFor(x => x.Date)
+		</p>	<p>
+			@Html.LabelFor(x => x.NumberAvaliable)
+			@Html.TextBoxFor(x => x.NumberAvaliable)
+		</p>
+		<p>
+			<input type="submit" value="Submit" />
+		</p>
+	}
+</div>
